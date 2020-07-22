@@ -29,8 +29,8 @@ class MainApplication(QMainWindow, Ui_MainWindow):
         if self.correctPassword:
             self.setupUi(self)
 
-        saved = False
-        saved = self.pushButton.clicked.connect(lambda: self.storeData(saved))  # save button
+        self.saved = False
+        self.pushButton.clicked.connect(lambda: self.storeData())  # save button
         self.pushButton_3.clicked.connect(self.viewURL)     # view button
 
 
@@ -110,34 +110,33 @@ class MainApplication(QMainWindow, Ui_MainWindow):
         self.dockWidget.setMinimumSize(QSize(432, 116))
         print(url)
         
-        
-         
     
     def mainWindowData(self):
         data = {
-            "title": self.self.Title.text(),
+            "title": self.Title.text(),
             "email": self.Email.text(),
             "password": self.Password.text(),
             "url": self.URL.text(),
-            "message" : self.Message.text()
+            "message" : self.Message.toPlainText()
         }
         print(data)
         return data
     
-    def storeData(self, saved):
+    def storeData(self):
         # Chec if the file to store the data is present 
         isFilePresent = self.isPasswordAvalilable(".Data/.encrypted")
-        if not saved:       # This prevents data from being saved more than once
+        if not self.saved:       # This prevents data from being saved more than once
             if isFilePresent :
+                data = self.mainWindowData()
                 decryptedData = Decrypter.getData()
-                decryptedData.append(self.mainWindowData())
+                decryptedData[data['title']] = data
                 Encrypter.Encrypt(decryptedData)
             else: 
-                data = mainWindowData()
-                dataList = [data]
+                data = self.mainWindowData()
+                dataList = {data['title']: data}
                 Encrypter.Encrypt(dataList)
-            return True
-        else:
+            self.saved = True
+        else :
             print("The data is already saved")
     
 
