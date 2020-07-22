@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>432</width>
+    <height>465</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Password Wallet</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #EFEFEF;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>69</y>
+      <width>89</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>160</y>
+      <width>89</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Database</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>114</y>
+      <width>89</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>View</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="header">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>441</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Manjari</family>
+      <pointsize>19</pointsize>
+      <italic>false</italic>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#header{
+	background-color: teal;
+	color: white;
+}</string>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="text">
+     <string>Password Wallet</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::RichText</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Email">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>109</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Email{
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 15px;	
+	border: 1px solid #D9D9D9;	
+}
+
+#Email:focus{
+	background-color: white;
+	border-radius: 0px;	
+	border-color: rgba(64, 144, 218, 1);
+	border-width: 1px;
+	border-style: solid;
+	text-indent: 10px;
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Email or Phone</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Password">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>151</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Password{
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 15px;	
+	border: 1px solid #D9D9D9;
+}
+#Password:focus{
+	background-color: white;
+	border-radius: 0px;	
+	border-color: rgba(64, 144, 218, 1);
+	border-width: 1px;
+	border-style: solid;
+	text-indent: 10px;
+}</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+    <property name="placeholderText">
+     <string>Password</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="URL">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>193</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#URL{
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 15px;	
+	border: 1px solid #D9D9D9;
+}
+
+#URL:focus{
+	background-color: white;
+	border-radius: 0px;	
+	border-color: rgba(64, 144, 218, 1);
+	border-width: 1px;
+	border-style: solid;
+	text-indent: 10px;
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>URL</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Title">
+    <property name="geometry">
+     <rect>
+      <x>19</x>
+      <y>65</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Title{
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 15px;	
+	border: 1px solid #D9D9D9;
+}
+
+#Title:focus{
+	background-color: white;
+	border-radius: 0px;	
+	border-color: rgba(64, 144, 218, 1);
+	border-width: 1px;
+	border-style: solid;
+	text-indent: 10px;
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Title</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="Message">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>239</y>
+      <width>381</width>
+      <height>189</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Message{
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 15px;	
+	border: 1px solid #D9D9D9;
+}
+
+#Message:focus{
+	background-color: white;
+	border-radius: 0px;	
+	border-color: rgba(64, 144, 218, 1);
+	border-width: 1px;
+	border-style: solid;
+	text-indent: 10px;
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Description or Message</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget">
+   <property name="toolTip">
+    <string>WebBrowser</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <widget class="QWebView" name="webView">
+     <property name="geometry">
+      <rect>
+       <x>-1</x>
+       <y>-11</y>
+       <width>431</width>
+       <height>431</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(46, 52, 54);</string>
+     </property>
+     <property name="url">
+      <url>
+       <string>about:blank</string>
+      </url>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <action name="actionOpen_File">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebKitWidgets/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

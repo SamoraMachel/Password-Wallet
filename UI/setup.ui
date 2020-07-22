@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SetupForm</class>
+ <widget class="QDialog" name="SetupForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>309</width>
+    <height>253</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Setup</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #EFEFEF;</string>
+  </property>
+  <widget class="QLabel" name="header">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>0</y>
+     <width>321</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Manjari</family>
+     <pointsize>19</pointsize>
+     <italic>false</italic>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#header{
+	background-color: teal;
+	color: white;
+}</string>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="text">
+    <string>Setup</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::RichText</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="Username">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>80</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Username{
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 15px;	
+	border: 1px solid #D9D9D9;
+}
+
+#Username:focus{
+	background-color: white;
+	border-radius: 0px;	
+	border-color: rgba(64, 144, 218, 1);
+	border-width: 1px;
+	border-style: solid;
+	text-indent: 10px;
+}</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="placeholderText">
+    <string>Username</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="Password">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>130</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Password{
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 15px;	
+	border: 1px solid #D9D9D9;
+}
+
+#Password:focus{
+	background-color: white;
+	border-radius: 0px;	
+	border-color: rgba(64, 144, 218, 1);
+	border-width: 1px;
+	border-style: solid;
+	text-indent: 10px;
+}</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="placeholderText">
+    <string>Password</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="Setup">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>190</y>
+     <width>93</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
+   </property>
+   <property name="text">
+    <string>Setup</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
