@@ -5,7 +5,7 @@ import json
 
 
 # %% Encrypts data to a file 
-def Encrypt(data: any, KeyFile: __file__ = ".Data/.keypass", DataFile: __file__ = ".Data/.encrypted" ) -> None:
+def Encrypt(data: any, KeyFile: __file__ = ".Data/.encryptionKey", DataFile: __file__ = ".Data/.encrypted" ) -> None:
 
     # check if data is a dictionary and convert it
     # to a json type otherwise let it reamin as string
@@ -14,7 +14,7 @@ def Encrypt(data: any, KeyFile: __file__ = ".Data/.keypass", DataFile: __file__ 
 
     # generate the key and then dump the key to a file 
     key = xcrypt.Fernet.generate_key()
-    keyFile = open(Keyfile, 'wb')
+    keyFile = open(KeyFile, 'wb')
     pickle.dump(key, keyFile)
     keyFile.close()
 

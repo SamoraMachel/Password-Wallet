@@ -4,7 +4,7 @@ import cryptography.fernet as xcrypt
 import json
 
 # %% Decrypts the data from the files
-def Decrypt(KeyFile :__file__ = ".Data/.keypass", DataFile :__file__ = ".Data/.encrypted") -> dict or str :
+def Decrypt(KeyFile :__file__ = ".Data/.encryptionKey", DataFile :__file__ = ".Data/.encrypted") -> dict or str :
     # get the ecryption key
     keyFile = open(KeyFile, 'rb')
     keyBytes = pickle.load(keyFile) # the unpickled data is in bytes
@@ -31,8 +31,8 @@ def isJson(data: dict) -> bool:
         return False
 
 # %% Gets the encrypted data 
-def getData() -> dict or str:
-    data = Decrypt()
+def getData(keyFile :__file__ = ".Data/.encryptionKey", dataFile :__file__ = ".Data/.encrypted") -> dict or str:
+    data = Decrypt(keyFile, dataFile)
     if isJson(data):
         fetchedData = json.loads(data)
         return fetchedData  # returns a dictionary

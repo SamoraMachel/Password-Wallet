@@ -8,6 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWebEngineWidgets import QWebEngineView  # Added This file manually
 
 
 class Ui_MainWindow(object):
@@ -80,7 +81,7 @@ class Ui_MainWindow(object):
 "    border-style: solid;\n"
 "    text-indent: 10px;\n"
 "}")
-        self.Password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.Password.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
         self.Password.setObjectName("Password")
         self.URL = QtWidgets.QLineEdit(self.centralwidget)
         self.URL.setGeometry(QtCore.QRect(20, 193, 231, 31))
@@ -138,7 +139,7 @@ class Ui_MainWindow(object):
         self.dockWidget.setObjectName("dockWidget")
         self.dockWidgetContents_2 = QtWidgets.QWidget()
         self.dockWidgetContents_2.setObjectName("dockWidgetContents_2")
-        self.webView = QtWebKitWidgets.QWebView(self.dockWidgetContents_2)
+        self.webView = QWebEngineView(self.dockWidgetContents_2)
         self.webView.setGeometry(QtCore.QRect(-1, -11, 431, 431))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
@@ -173,4 +174,3 @@ class Ui_MainWindow(object):
         self.dockWidget.setToolTip(_translate("MainWindow", "WebBrowser"))
         self.actionOpen_File.setText(_translate("MainWindow", "Clear"))
         self.actionClose.setText(_translate("MainWindow", "Close"))
-from PyQt5 import QtWebKitWidgets
