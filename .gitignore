@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# private data
+.Data/.passwordKey
+.Data/.encryptedPassword
+.Data/.encryptionKey
+.Data/.encrypted
