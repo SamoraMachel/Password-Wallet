@@ -254,12 +254,12 @@
      <string>Description or Message</string>
     </property>
    </widget>
-   <widget class="QLabel" name="passwordCheck">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>260</x>
       <y>180</y>
-      <width>66</width>
+      <width>91</width>
       <height>28</height>
      </rect>
     </property>

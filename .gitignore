@@ -133,3 +133,6 @@ dmypy.json
 .Data/.encryptedPassword
 .Data/.encryptionKey
 .Data/.encrypted
+
+# logging file
+.log

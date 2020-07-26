@@ -68,13 +68,20 @@ class Ui_SetupForm(object):
 "    border-style: solid;\n"
 "    text-indent: 10px;\n"
 "}")
-        self.Password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.Password.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
         self.Password.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.Password.setObjectName("Password")
         self.Setup = QtWidgets.QToolButton(SetupForm)
-        self.Setup.setGeometry(QtCore.QRect(90, 150, 93, 37))
+        self.Setup.setGeometry(QtCore.QRect(30, 150, 93, 37))
         self.Setup.setStyleSheet("background-color: white;")
         self.Setup.setObjectName("Setup")
+        self.passwordCheck = QtWidgets.QLabel(SetupForm)
+        self.passwordCheck.setGeometry(QtCore.QRect(175, 150, 91, 28))
+        self.passwordCheck.setStyleSheet("color: rgb(204, 0, 0)")
+        self.passwordCheck.setText("")
+        self.passwordCheck.setTextFormat(QtCore.Qt.PlainText)
+        self.passwordCheck.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.passwordCheck.setObjectName("passwordCheck")
 
         self.retranslateUi(SetupForm)
         QtCore.QMetaObject.connectSlotsByName(SetupForm)

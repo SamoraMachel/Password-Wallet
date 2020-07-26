@@ -18,38 +18,40 @@ import sys
 import Encrypter
 import Decrypter
 from passwordCheck import checkPassword as psdCheck
+import logging as logErrors
 
 # %% 
 class MainApplication(QMainWindow, Ui_MainWindow):
     def __init__(self):
-
+        logErrors.basicConfig(filename='Password-Wallet.log', level=logErrors.INFO)
         QMainWindow.__init__(self)
+        # retuns true if the user is logging in 
         loggedIn = self.login()
         
-        if not loggedIn:
-            self.login()
+        # Incase the user has not logged in and it has
+        # returned false after the user has setup the account 
+        # it prompts the user to log in 
         
-        if self.correctPassword:
-            self.setupUi(self)
 
         self.saved = False
+        
         self.pushButton.clicked.connect(lambda: self.storeData())  # save button
         self.pushButton_3.clicked.connect(self.viewURL)     # view button
         self.pushButton_2.clicked.connect(self.database)    # database button
         self.Password.textChanged.connect(self.checkPasswordSecurityLevel) 
 
-    def checkPasswordSecurityLevel(self, userPassword):
-        # userPassword = self.Password.text()
+    def checkPasswordSecurityLevel(self, userData=None, window=Ui_MainWindow):
+        userPassword = window.Password.text() if userData == None else userData
         level = psdCheck(userPassword)
         if level == "Weak":
-            self.passwordCheck.setStyleSheet("color: #FF0000")
+            window.passwordCheck.setStyleSheet("color: #FF0000")
         elif level == "Very Strong":
-            self.passwordCheck.setStyleSheet("color: #00B431")
+            window.passwordCheck.setStyleSheet("color: #00B431")
         elif level == "Strong":
-            self.passwordCheck.setStyleSheet("color: blue")
+            window.passwordCheck.setStyleSheet("color: blue")
         elif level == "Medium":
-            self.passwordCheck.setStyleSheet("color: #D37D3A")
-        self.passwordCheck.setText(level)
+            window.passwordCheck.setStyleSheet("color: #D37D3A")
+        window.passwordCheck.setText(level)
 
     def isPasswordAvalilable(self, path) -> bool:
         '''
@@ -86,6 +88,8 @@ class MainApplication(QMainWindow, Ui_MainWindow):
             loadSetup = QDialog()
             window = Ui_SetupForm(loadSetup) 
             window.Setup.clicked.connect(lambda: self.getData(window, loggingIn, loadSetup))
+            window.Password.textChanged.connect(lambda: self.checkPasswordSecurityLevel(None, window))
+            window.Setup.clicked.connect(self.login)
             loadSetup.show()
             loadSetup.exec_()
             return False
@@ -96,7 +100,7 @@ class MainApplication(QMainWindow, Ui_MainWindow):
         * if the user was setting up his account then the 
         * data will be encrypted then stored 
         * else: 
-        * if the user was logging in then it will firsst of all 
+        * if the user was logging in then it will first of all 
         * verify the user
         '''
         if loggingIn:   # checks if the user is in the SetupForm or the Login Form
@@ -106,6 +110,24 @@ class MainApplication(QMainWindow, Ui_MainWindow):
                 self.correctPassword = True
             else:
                 self.correctPassword = False
+                QMessageBox.information(self, "Error", "Wrong Password")
+
+            # if the user enters a wrong password 
+            # the program will not exit 
+            if not self.correctPassword:
+                pass
+            else:
+                # if the user Enters a correct password
+                # the program exits and sets up the 
+                # Wallet's Main interface 
+                dialog.close()
+                try:
+                    if self.correctPassword:
+                        self.setupUi(self)
+                except Exception as e:
+                    # logs any Error to the log file 
+                    logErrors.WARN(f"Could not Setup MainWindow. Warning: {e}")
+                
         else:
             password = window.Password.text()
             username = window.Username.text()
@@ -114,9 +136,9 @@ class MainApplication(QMainWindow, Ui_MainWindow):
                 'password': password
             }
             Encrypter.Encrypt(data, '.Data/.passwordKey', '.Data/.encryptedPassword')
-            loggingIn = True
-        dialog.close()
-    
+            loggingIn = True 
+            dialog.close()
+
     def viewURL(self):
         """
         Open the web browser engine and displays the page 
@@ -175,7 +197,12 @@ class MainApplication(QMainWindow, Ui_MainWindow):
         Encrypter.Encrypt(dataToSave)
 
     def openBrowserOnClick(self, item):
-        userData = Decrypter.getData()
+        try:
+            userData = Decrypter.getData()
+        except Exception as E:
+            logErrors.warning(f"Some files are not available yet : {E}")
+            return False 
+
         dataClicked = userData.get(item.text(), "Not a string")
         # checks if the data clicked by the user retrieves a 
         # dictionary in order to retrieve the URL within the 
@@ -191,7 +218,10 @@ class MainApplication(QMainWindow, Ui_MainWindow):
     def database(self):
         QDatabaseDialog = QDialog()
         Interface = Ui_Database(QDatabaseDialog)
-        Interface.table.itemClicked.connect(self.openBrowserOnClick)
+        try: 
+            Interface.table.itemClicked.connect(self.openBrowserOnClick)
+        except Exception as E:
+            logErrors.WARN(f"Error: {E}")
         Interface.table.setRowCount(13)
         
         try: 
@@ -210,7 +240,8 @@ class MainApplication(QMainWindow, Ui_MainWindow):
                 Interface.table.setItem(tableRow, 3, QTableWidgetItem(databaseKey['message']))
                 tableRow += 1
         except Exception as E:
-            QMessageBox.information(self, "Information", f"{E}")
+            logErrors.info(f"Database Error: {E}")
+            QMessageBox.information(self, "Information", "You have no data \nin your database")
         
 
         QDatabaseDialog.show()
