@@ -38,7 +38,7 @@ class MainApplication(QMainWindow, Ui_MainWindow):
         self.pushButton.clicked.connect(lambda: self.storeData())  # save button
         self.pushButton_3.clicked.connect(self.viewURL)     # view button
         self.pushButton_2.clicked.connect(self.database)    # database button
-        self.Password.textChanged.connect(self.checkPasswordSecurityLevel) 
+        self.Password.textChanged.connect(lambda: self.checkPasswordSecurityLevel(None, self)) 
 
     def checkPasswordSecurityLevel(self, userData=None, window=Ui_MainWindow):
         userPassword = window.Password.text() if userData == None else userData
@@ -195,6 +195,11 @@ class MainApplication(QMainWindow, Ui_MainWindow):
             decryptedData[data['title']] = data
             dataToSave = decryptedData
         Encrypter.Encrypt(dataToSave)
+        self.Title.setText("")
+        self.Email.setText("")
+        self.Password.setText("")
+        self.Message.setText("")
+        self.URL.setText("")
 
     def openBrowserOnClick(self, item):
         try:

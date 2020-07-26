@@ -9,8 +9,8 @@ import os
 def Encrypt(data: any, KeyFile: __file__ = ".Data/.encryptionKey", DataFile: __file__ = ".Data/.encrypted" ) -> None:
 
     # Adds the directory .Data incase it is not present 
-    if not os.path.exists(KeyFile) and  not os.path.exists(DataFile):
-        os.mkdir("./.Data")
+    if not os.path.exists("./.Data"):
+        os.mkdir(".Data")
     # check if data is a dictionary and convert it
     # to a json type otherwise let it reamin as string
     if (type(data) == dict):
