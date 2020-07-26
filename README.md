@@ -9,6 +9,9 @@ for your accounts without minding if you'll forget them. <br/>
 We're all humans and one of our greatest weakness is forgeting :blush:
 </p>
 
+## Requirements
+* [python 3.8](https://www.python.org/)
+
 ## Setup
 To download all the required dependancies copy paste the code below
 ``` python
@@ -52,4 +55,4 @@ You can get in touch with me at <br />
 * [Twitter](https://twitter.com/machel_dev)
 * [Instagram](https://www.instagram.com/pydevjnr/)
 
-[Code Documentation](https://github.com/SamoraMachel/Password-Wallet/wiki) for more code documentation 
+[Code Documentation](https://github.com/SamoraMachel/Password-Wallet/wiki) - for more information on how the code works 
