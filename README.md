@@ -51,3 +51,5 @@ pip install -r requirements.txt
 You can get in touch with me at <br />
 * [Twitter](https://twitter.com/machel_dev)
 * [Instagram](https://www.instagram.com/pydevjnr/)
+
+for more code documentation [Code Documentation](https://github.com/SamoraMachel/Password-Wallet.wiki.git)

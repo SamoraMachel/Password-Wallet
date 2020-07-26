@@ -136,3 +136,6 @@ dmypy.json
 
 # logging file
 .log
+
+# wiki-pages
+Password-Wallet.wiki/
