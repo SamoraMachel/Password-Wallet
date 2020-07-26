@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>418</width>
-    <height>432</height>
+    <height>436</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>418</width>
-    <height>432</height>
+    <height>436</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -258,6 +258,9 @@
   <widget class="QDockWidget" name="dockWidget">
    <property name="toolTip">
     <string>WebBrowser</string>
+   </property>
+   <property name="windowTitle">
+    <string>View URL</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>8</number>

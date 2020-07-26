@@ -2,13 +2,14 @@
 from UI.Code.login_ui import Ui_LoginForm
 from UI.Code.setup_ui import Ui_SetupForm
 from UI.Code.wallet_ui import Ui_MainWindow
+from UI.Code.dataBoard_ui import Ui_Database
 
 # %% import the neccessary PyQT GUI utilities
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QUrl
-from PyQt5.QtCore import QSize 
+from PyQt5.QtCore import QSize
 
 # %% import dependant utilities
 import os
@@ -32,7 +33,7 @@ class MainApplication(QMainWindow, Ui_MainWindow):
         self.saved = False
         self.pushButton.clicked.connect(lambda: self.storeData())  # save button
         self.pushButton_3.clicked.connect(self.viewURL)     # view button
-
+        self.pushButton_2.clicked.connect(self.database)    # database button
 
     def isPasswordAvalilable(self, path) -> bool:
         '''
@@ -99,52 +100,94 @@ class MainApplication(QMainWindow, Ui_MainWindow):
             Encrypter.Encrypt(data, '.Data/.passwordKey', '.Data/.encryptedPassword')
             loggingIn = True
         dialog.close()
-
-    def setupMainWindow(self):
-        self.setupUi(self)
-         # view button
     
     def viewURL(self):
+        """
+        Open the web browser engine and displays the page 
+        requested from the url inserted by the user
+        """
         url = self.URL.text()
         self.webView.load(QUrl(url))
-        self.dockWidget.setMinimumSize(QSize(432, 116))
-        print(url)
-        
-    
-    def mainWindowData(self):
+        self.dockWidget.setMinimumSize(QSize(418, 116))
+         
+    def mainWindowData(self) -> dict:
+        # gets the data inserted by the user for the MainWindow interface
         data = {
             "title": self.Title.text(),
             "email": self.Email.text(),
             "password": self.Password.text(),
+            "message" : self.Message.toPlainText(),
             "url": self.URL.text(),
-            "message" : self.Message.toPlainText()
         }
-        print(data)
-        return data
+        return data  
     
     def storeData(self):
-        # Chec if the file to store the data is present 
+        '''
+        First checks if the file is saved 
+        * If it is not saved : 
+            It checks if the file to store the 
+            data is present 
+            then ...
+            it gets the data entered by the user
+            get the title and store makes it the 
+            key of the data 
+        * If it is saved : 
+            it gets the data then 
+            replaces the existing data with the one entered 
+            by the user 
+        '''
+        # Check if the file to store the data is present 
         isFilePresent = self.isPasswordAvalilable(".Data/.encrypted")
         if not self.saved:       # This prevents data from being saved more than once
             if isFilePresent :
+                # saves a file 
                 data = self.mainWindowData()
                 decryptedData = Decrypter.getData()
                 decryptedData[data['title']] = data
-                Encrypter.Encrypt(decryptedData)
+                dataToSave = decryptedData
+                
             else: 
                 data = self.mainWindowData()
                 dataList = {data['title']: data}
-                Encrypter.Encrypt(dataList)
-            self.saved = True
+                dataToSave = dataList  
+                self.saved = True
         else :
-            print("The data is already saved")
-    
+            data = self.mainWindowData()
+            decryptedData = Decrypter.getData()
+            decryptedData[data['title']] = data
+            dataToSave = decryptedData
+        Encrypter.Encrypt(dataToSave)
+
+    def database(self):
+        QDatabaseDialog = QDialog()
+        Interface = Ui_Database(QDatabaseDialog)
+        Interface.table.setRowCount(13)
+
+        try: 
+            userData = Decrypter.getData()
+            tableRow = 0
+            # the amount of items in the database
+            itemCount = len(userData)
+            if itemCount >  13: # Set the row to equal amount of items
+                Interface.table.setRowCount(itemCount)
+
+            for item in userData:
+                databaseKey = userData[item]
+                Interface.table.setItem(tableRow, 0, QTableWidgetItem(databaseKey['title']))
+                Interface.table.setItem(tableRow, 1, QTableWidgetItem(databaseKey['email']))
+                Interface.table.setItem(tableRow, 2, QTableWidgetItem(databaseKey['password']))
+                Interface.table.setItem(tableRow, 3, QTableWidgetItem(databaseKey['message']))
+                tableRow += 1
+        except Exception as E:
+            QMessageBox.information(self, "Information", f"{E}")
+            
+
+        QDatabaseDialog.show()
+        QDatabaseDialog.exec_()
+        
 
 
-
-
-
-# %%.
+# %% 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     sam = MainApplication()

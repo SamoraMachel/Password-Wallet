@@ -39,4 +39,5 @@ def getData(keyFile :__file__ = ".Data/.encryptionKey", dataFile :__file__ = ".D
     else:
         return data         # returns a string 
     
-# %% 
+
+# %%
