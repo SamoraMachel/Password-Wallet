@@ -41,7 +41,7 @@ pip install -r requirements.txt
 ![databaseImage](img/database.png)
 
 > it also ships in with a lightweight browser which 
-> launches the url of the related with the data
+> launches the url related with the data
 > when the Title is clicked <br/>
 
 ![browserImage](img/browser.png)
