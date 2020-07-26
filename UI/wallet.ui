@@ -140,7 +140,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>140</y>
+      <y>179</y>
       <width>231</width>
       <height>31</height>
      </rect>
@@ -171,7 +171,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>180</y>
+      <y>140</y>
       <width>231</width>
       <height>31</height>
      </rect>
@@ -222,7 +222,7 @@
 }</string>
     </property>
     <property name="placeholderText">
-     <string>Title</string>
+     <string>Title or Username</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="Message">
@@ -252,6 +252,22 @@
     </property>
     <property name="placeholderText">
      <string>Description or Message</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="passwordCheck">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>180</y>
+      <width>66</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(204, 0, 0)</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

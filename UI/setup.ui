@@ -131,7 +131,7 @@
   <widget class="QToolButton" name="Setup">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>30</x>
      <y>150</y>
      <width>93</width>
      <height>37</height>
@@ -142,6 +142,28 @@
    </property>
    <property name="text">
     <string>Setup</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="passwordCheck">
+   <property name="geometry">
+    <rect>
+     <x>175</x>
+     <y>150</y>
+     <width>81</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(204, 0, 0)</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::PlainText</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
  </widget>

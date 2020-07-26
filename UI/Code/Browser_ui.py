@@ -9,15 +9,15 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWebEngineWidgets import QWebEngineView  # Added This file manually
 
 class Ui_webDialog(object):
-    def setupUi(self, webDialog):
+    def __init__(self, webDialog):
         webDialog.setObjectName("webDialog")
         webDialog.resize(721, 571)
         self.gridLayout = QtWidgets.QGridLayout(webDialog)
         self.gridLayout.setObjectName("gridLayout")
-        self.webBrowser = QtWebKitWidgets.QWebView(webDialog)
+        self.webBrowser = QWebEngineView(webDialog)
         self.webBrowser.setUrl(QtCore.QUrl("about:blank"))
         self.webBrowser.setObjectName("webBrowser")
         self.gridLayout.addWidget(self.webBrowser, 0, 0, 1, 1)
@@ -28,4 +28,3 @@ class Ui_webDialog(object):
     def retranslateUi(self, webDialog):
         _translate = QtCore.QCoreApplication.translate
         webDialog.setWindowTitle(_translate("webDialog", "Browser"))
-from PyQt5 import QtWebKitWidgets

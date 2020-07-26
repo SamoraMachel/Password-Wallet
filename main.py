@@ -3,6 +3,7 @@ from UI.Code.login_ui import Ui_LoginForm
 from UI.Code.setup_ui import Ui_SetupForm
 from UI.Code.wallet_ui import Ui_MainWindow
 from UI.Code.dataBoard_ui import Ui_Database
+from UI.Code.Browser_ui import Ui_webDialog
 
 # %% import the neccessary PyQT GUI utilities
 from PyQt5.QtGui import *
@@ -16,6 +17,7 @@ import os
 import sys
 import Encrypter
 import Decrypter
+from passwordCheck import checkPassword as psdCheck
 
 # %% 
 class MainApplication(QMainWindow, Ui_MainWindow):
@@ -34,6 +36,20 @@ class MainApplication(QMainWindow, Ui_MainWindow):
         self.pushButton.clicked.connect(lambda: self.storeData())  # save button
         self.pushButton_3.clicked.connect(self.viewURL)     # view button
         self.pushButton_2.clicked.connect(self.database)    # database button
+        self.Password.textChanged.connect(self.checkPasswordSecurityLevel) 
+
+    def checkPasswordSecurityLevel(self, userPassword):
+        # userPassword = self.Password.text()
+        level = psdCheck(userPassword)
+        if level == "Weak":
+            self.passwordCheck.setStyleSheet("color: #FF0000")
+        elif level == "Very Strong":
+            self.passwordCheck.setStyleSheet("color: #00B431")
+        elif level == "Strong":
+            self.passwordCheck.setStyleSheet("color: blue")
+        elif level == "Medium":
+            self.passwordCheck.setStyleSheet("color: #D37D3A")
+        self.passwordCheck.setText(level)
 
     def isPasswordAvalilable(self, path) -> bool:
         '''
@@ -158,11 +174,26 @@ class MainApplication(QMainWindow, Ui_MainWindow):
             dataToSave = decryptedData
         Encrypter.Encrypt(dataToSave)
 
+    def openBrowserOnClick(self, item):
+        userData = Decrypter.getData()
+        dataClicked = userData.get(item.text(), "Not a string")
+        # checks if the data clicked by the user retrieves a 
+        # dictionary in order to retrieve the URL within the 
+        # dictionary and display the page for the user
+        if type(dataClicked) == dict :
+            getURL = dataClicked['url']
+            browserDialog = QDialog()
+            browserWindow = Ui_webDialog(browserDialog)
+            browserWindow.webBrowser.load(QUrl(getURL))
+            browserDialog.show()
+            browserDialog.exec_()            
+
     def database(self):
         QDatabaseDialog = QDialog()
         Interface = Ui_Database(QDatabaseDialog)
+        Interface.table.itemClicked.connect(self.openBrowserOnClick)
         Interface.table.setRowCount(13)
-
+        
         try: 
             userData = Decrypter.getData()
             tableRow = 0
@@ -180,11 +211,12 @@ class MainApplication(QMainWindow, Ui_MainWindow):
                 tableRow += 1
         except Exception as E:
             QMessageBox.information(self, "Information", f"{E}")
-            
+        
 
         QDatabaseDialog.show()
         QDatabaseDialog.exec_()
         
+
 
 
 # %% 

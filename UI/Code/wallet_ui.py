@@ -68,7 +68,7 @@ class Ui_MainWindow(object):
 "}")
         self.Email.setObjectName("Email")
         self.Password = QtWidgets.QLineEdit(self.centralwidget)
-        self.Password.setGeometry(QtCore.QRect(20, 140, 231, 31))
+        self.Password.setGeometry(QtCore.QRect(20, 179, 231, 31))
         self.Password.setStyleSheet("#Password{\n"
 "    background-color: rgba(255, 255, 255, 0.8);\n"
 "    border-radius: 15px;    \n"
@@ -85,7 +85,7 @@ class Ui_MainWindow(object):
         self.Password.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
         self.Password.setObjectName("Password")
         self.URL = QtWidgets.QLineEdit(self.centralwidget)
-        self.URL.setGeometry(QtCore.QRect(20, 180, 231, 31))
+        self.URL.setGeometry(QtCore.QRect(20, 140, 231, 31))
         self.URL.setStyleSheet("#URL{\n"
 "    background-color: rgba(255, 255, 255, 0.8);\n"
 "    border-radius: 15px;    \n"
@@ -135,6 +135,11 @@ class Ui_MainWindow(object):
 "    text-indent: 10px;\n"
 "}")
         self.Message.setObjectName("Message")
+        self.passwordCheck = QtWidgets.QLabel(self.centralwidget)
+        self.passwordCheck.setGeometry(QtCore.QRect(260, 180, 91, 28))
+        self.passwordCheck.setStyleSheet("color: rgb(204, 0, 0)")
+        self.passwordCheck.setText("")
+        self.passwordCheck.setObjectName("passwordCheck")
         MainWindow.setCentralWidget(self.centralwidget)
         self.dockWidget = QtWidgets.QDockWidget(MainWindow)
         self.dockWidget.setObjectName("dockWidget")
@@ -170,7 +175,7 @@ class Ui_MainWindow(object):
         self.Email.setPlaceholderText(_translate("MainWindow", "Email or Phone"))
         self.Password.setPlaceholderText(_translate("MainWindow", "Password"))
         self.URL.setPlaceholderText(_translate("MainWindow", "URL"))
-        self.Title.setPlaceholderText(_translate("MainWindow", "Title"))
+        self.Title.setPlaceholderText(_translate("MainWindow", "Title or Username"))
         self.Message.setPlaceholderText(_translate("MainWindow", "Description or Message"))
         self.dockWidget.setToolTip(_translate("MainWindow", "WebBrowser"))
         self.dockWidget.setWindowTitle(_translate("MainWindow", "View URL"))
